@@ -45,7 +45,7 @@ const VoiceRecorder = () => {
         setAudioURL(audioUrl);
       };
 
-      mediaRecorderRef.current.start();
+      mediaRecorderRef.current.start(1000);
       setIsRecording(true);
       setDuration(0);
     } catch (error) {
