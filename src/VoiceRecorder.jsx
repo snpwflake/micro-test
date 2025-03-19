@@ -89,6 +89,10 @@ const VoiceRecorder = () => {
       ) : (
         <button onClick={stopRecording}>⏹️ Stop Recording</button>
       )}
+      <div>
+      Mimitpe: {mimeType}
+
+      </div>
       {audioURL && (
         <div>
           <h3>Playback:</h3>
