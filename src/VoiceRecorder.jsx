@@ -29,6 +29,8 @@ const VoiceRecorder = () => {
         return;
       }
 
+      console.log(mimeType);
+
       mediaRecorderRef.current = new MediaRecorder(stream, { mimeType });
 
       audioChunksRef.current = [];
@@ -62,7 +64,6 @@ const VoiceRecorder = () => {
     if (audioURL) {
       const audio = audioRef.current;
       audio.src = audioURL;
-      console.log(audio)
       audio.addEventListener('loadedmetadata', (event) => {
         setDuration(audio.duration);
       });
@@ -93,7 +94,7 @@ const VoiceRecorder = () => {
           <h3>Playback:</h3>
           <audio ref={audioRef} controls />
           <p>Duration: {formatDuration(duration)}</p>
-          <a href={audioURL} download={`recording.${audioURL.includes('webm') ? 'webm' : 'mp4'}`}>
+          <a href={audioURL} download={`recording.webm`}> 
             Download Recording
           </a>
         </div>
