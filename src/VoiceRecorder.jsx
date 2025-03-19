@@ -7,6 +7,7 @@ const VoiceRecorder = () => {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const audioRef = useRef(null);
+  const [mimeType, setMimeType] = useState('');
 
   const getSupportedMimeType = () => {
     if (MediaRecorder.isTypeSupported('audio/webm')) return 'audio/webm';
@@ -29,8 +30,7 @@ const VoiceRecorder = () => {
         return;
       }
 
-      console.log(mimeType);
-
+      setMimeType(mimeType.replace('audio/', ''));
       mediaRecorderRef.current = new MediaRecorder(stream, { mimeType });
 
       audioChunksRef.current = [];
@@ -94,7 +94,7 @@ const VoiceRecorder = () => {
           <h3>Playback:</h3>
           <audio ref={audioRef} controls />
           <p>Duration: {formatDuration(duration)}</p>
-          <a href={audioURL} download={`recording.webm`}> 
+          <a href={audioURL} download={`recording.${mimeType}`}> 
             Download Recording
           </a>
         </div>
